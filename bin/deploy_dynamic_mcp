@@ -15,25 +15,23 @@ puts "Deploying MCP server to #{destination}..."
 
 # Copy the mcp directory
 # Get a list of all files and directories in the source
-source_files = Dir.glob(File.join(source, "**", "*"), File::FNM_DOTMATCH).reject { |f| f.end_with?("/.") }
+source_files = Dir.glob(File.join(source, "**", "*.{rb,md,yml}"))
 
 source_files.each do |file|
   # The destination path for this file
   dest_file = File.join(destination, file.sub(source, ''))
+  dest_dir = File.dirname(dest_file)
+
+  FileUtils.mkdir_p(dest_dir) unless File.directory?(dest_dir)
 
   if File.exist?(dest_file)
     print "overwrite #{dest_file}? (y/n) "
     answer = STDIN.gets.chomp
     if answer.downcase == 'y'
-      dest_dir = File.dirname(dest_file)
-      FileUtils.mkdir_p(dest_dir) unless File.directory?(dest_dir)
-
-      FileUtils.cp_r(file, dest_file)
+      FileUtils.cp(file, dest_file)
     end
   else
-    dest_dir = File.dirname(dest_file)
-    FileUtils.mkdir_p(dest_dir) unless File.directory?(dest_dir)
-    FileUtils.cp_r(file, dest_file)
+    FileUtils.cp(file, dest_file)
   end
 end
 

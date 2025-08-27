@@ -6,7 +6,7 @@ module DynamicMcp
     module PromptGenerator
       def self.generate(config)
         prompt_paths = config["dynamic_mcp"]["source_data"]["prompts"]
-        prompt_files = prompt_paths.flat_map { |path| ::DynamicMcp::Utilities::FileOps.get_all_files(path) }
+        prompt_files = prompt_paths.flat_map { |path| ::DynamicMcp::Utilities::FileOps.get_all_files(config["server_root"], path) }
 
         prompt_files.map do |file|
           ext = File.extname(file)

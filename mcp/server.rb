@@ -8,6 +8,7 @@ else
 end
 
 config = ::YAML.load_file("#{__dir__}/config.yml")
+config["server_root"] = __dir__
 tools = ::DynamicMcp::Tools::ToolGenerator.generate(config)
 resources = ::DynamicMcp::Resources::ResourceGenerator.generate(config)
 prompts = ::DynamicMcp::Prompts::PromptGenerator.generate(config)

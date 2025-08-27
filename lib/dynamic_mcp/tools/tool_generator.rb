@@ -5,7 +5,9 @@ module DynamicMcp
     module ToolGenerator
       def self.generate(config)
         tool_paths = config["dynamic_mcp"]["source_data"]["tools"]
-        tool_files = tool_paths.flat_map { |path| ::DynamicMcp::Utilities::FileOps.get_all_files(path) }
+        tool_files = tool_paths.flat_map { |path| ::DynamicMcp::Utilities::FileOps.get_all_files(config["server_root"], path) }
+
+        puts tool_files
 
         tool_files.map do |file|
           require file
