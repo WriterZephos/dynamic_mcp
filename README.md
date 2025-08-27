@@ -1,5 +1,5 @@
 # ruby-mcp
-A dynamic and flexible Ruby MCP server built on FastMCP.
+A dynamic and flexible Ruby MCP server built on [FastMCP](https://github.com/yjacquin/fast-mcp).
 
 This gem is a Ruby MCP server in a box. It's designed to allow you to get a new MCP server up and running in just a few minutes, and add tools, resources and prompts with as little effort as possible.
 
@@ -29,8 +29,8 @@ For example, to configure gemini to use your new MCP server, you would put the f
     {
       "name": "dynamic_mcp_server",
       "command": "ruby",
-      "args": ["path/to/server.rb"],
-      "cwd": "path/to/server.rb",
+      "args": ["path/to/mcp/server.rb"],
+      "cwd": "path/to/mcp",
       "timeout": 30000,
       "trust": false
     }
@@ -44,7 +44,7 @@ With the MCP server installed and your agent configured to use it, you can now d
 
 ### Tools
 
-Tool files must be `.rb` files that define a class that inherits form `::FastMCP::Tool`. An example file is generated as part of the installation inside the `./mcp/tools` directory. See the FastMCP github page for more about how to implement a tool in Ruby.
+Tool files must be `.rb` files that define a class that inherits form `::FastMCP::Tool`. An example file is generated as part of the installation inside the `./mcp/tools` directory. See the [FastMCP github page](https://github.com/yjacquin/fast-mcp) for more about how to implement a tool in Ruby.
 
 ### Resources
 

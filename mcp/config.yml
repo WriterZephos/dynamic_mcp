@@ -3,8 +3,8 @@ dynamic_mcp:
   version: 0.0.0
   source_data:
     prompts:
-      - ./prompts
+      - prompts
     resources:
-      - ./resources
+      - resources
     tools:
-      - ./tools
+      - tools
