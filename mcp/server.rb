@@ -4,7 +4,7 @@ require "yaml"
 if ENV["DYNAMICMCPDEV"] == "true"
   require_relative "../lib/dynamic_mcp"
 else
-  require "ruby-mcp"
+  require "dynamic_mcp"
 end
 
 config = ::YAML.load_file("#{__dir__}/config.yml")
