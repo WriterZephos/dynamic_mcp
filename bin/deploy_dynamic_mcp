@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+# The directory where the gem is installed
+gem_path = Gem.loaded_specs['ruby-mcp'].full_gem_path
+
+# The source directory to copy from
+source = File.join(gem_path, 'mcp')
+
+# The destination directory (current working directory)
+destination = File.join(Dir.pwd, 'mcp')
+
+puts "Deploying MCP server to #{destination}..."
+
+# Copy the mcp directory
+# Get a list of all files and directories in the source
+source_files = Dir.glob(File.join(source, "**", "*"), File::FNM_DOTMATCH).reject { |f| f.end_with?("/.") }
+
+source_files.each do |file|
+  # The destination path for this file
+  dest_file = File.join(destination, file.sub(source, ''))
+
+  if File.exist?(dest_file)
+    print "overwrite #{dest_file}? (y/n) "
+    answer = STDIN.gets.chomp
+    if answer.downcase == 'y'
+      dest_dir = File.dirname(dest_file)
+      FileUtils.mkdir_p(dest_dir) unless File.directory?(dest_dir)
+
+      FileUtils.cp_r(file, dest_file)
+    end
+  else
+    dest_dir = File.dirname(dest_file)
+    FileUtils.mkdir_p(dest_dir) unless File.directory?(dest_dir)
+    FileUtils.cp_r(file, dest_file)
+  end
+end
+
+puts "Deployment successful!"
+puts "To start the server, run: ruby #{File.join(destination, 'server.rb')}"
+

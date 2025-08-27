@@ -1,0 +1,10 @@
+dynamic_mcp:
+  server_name: "ruby-mcp"
+  version: 0.0.0
+  source_data:
+    prompts:
+      - ./prompts
+    resources:
+      - ./resources
+    tools:
+      - ./tools
