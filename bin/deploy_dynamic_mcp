@@ -3,7 +3,7 @@
 require 'fileutils'
 
 # The directory where the gem is installed
-gem_path = Gem.loaded_specs['ruby-mcp'].full_gem_path
+gem_path = Gem.loaded_specs['dynamic_mcp'].full_gem_path
 
 # The source directory to copy from
 source = File.join(gem_path, 'mcp')
