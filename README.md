@@ -1,4 +1,4 @@
-# ruby-mcp
+# dynamic_mcp
 A dynamic and flexible Ruby MCP server built on [FastMCP](https://github.com/yjacquin/fast-mcp).
 
 This gem is a Ruby MCP server in a box. It's designed to allow you to get a new MCP server up and running in just a few minutes, and add tools, resources and prompts with as little effort as possible.
