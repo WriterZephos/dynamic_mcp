@@ -81,3 +81,9 @@ The `name` attribute should be unique, as this is how the AI agent can invoke sp
 
 The `./mcp` directory is meant to be committed to a repository and/or shared. The server within it is an independent ruby application that simply needs its dependencies available on the system on which it runs. The globally installed gem knows nothing about the servers it creates.
 
+#### Gemini CLI
+
+The Gemini CLI client currently has a [bug that effects MacOS](https://github.com/google-gemini/gemini-cli/issues/3261). This bug is impacting all mcp servers and requires that the Gemini client is started in the same root directory as you deploy the MCP server.
+
+For now, it is recommended to deploy the MCP server into a top level directory that contains all the projects you wish to work on while using it.
+

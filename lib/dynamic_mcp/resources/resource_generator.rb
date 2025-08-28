@@ -8,13 +8,12 @@ module DynamicMcp
         resource_paths = config["dynamic_mcp"]["source_data"]["resources"]
         resource_files = resource_paths.flat_map { |path| ::DynamicMcp::Utilities::FileOps.get_all_files(config["server_root"], path) }
 
-        puts resource_files
-
         resource_files.map do |file|
           ext = File.extname(file)
           
           if ext == ".rb"
             require file
+            
             class_name = File.basename(file, ".rb").split('_').map(&:capitalize).join
             klass = Object.const_get(class_name)
             klass.ancestors.include?(FastMcp::Resource) ? klass : nil

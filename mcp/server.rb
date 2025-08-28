@@ -1,14 +1,11 @@
 require "fast_mcp"
 require "yaml"
 
-if ENV["DYNAMICMCPDEV"] == "true"
-  require_relative "../lib/dynamic_mcp"
-else
-  require "dynamic_mcp"
-end
+require "dynamic_mcp"
 
 config = ::YAML.load_file("#{__dir__}/config.yml")
 config["server_root"] = __dir__
+
 tools = ::DynamicMcp::Tools::ToolGenerator.generate(config)
 resources = ::DynamicMcp::Resources::ResourceGenerator.generate(config)
 prompts = ::DynamicMcp::Prompts::PromptGenerator.generate(config)
