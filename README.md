@@ -38,6 +38,27 @@ For example, to configure gemini to use your new MCP server, you would put the f
 }
 ```
 
+### Startup Shim
+
+An alternative way to start the MCP Server is to use the `dynamic_mcp_startup_shim`. This may be necessary if you want to start your AI client from outside the directory where you deployed the server. In this case, you would use a configuration like this:
+
+```json
+{
+  "mcpServers": [
+    {
+      "name": "dynamic_mcp_server",
+      "command": "dynamic_mcp_startup_shim",
+      "args": ["path/to/mcp/server.rb"],
+      "cwd": "path/to/mcp",
+      "timeout": 30000,
+      "trust": false
+    }
+  ]
+}
+```
+
+The only difference is the `command` you tell the client to use to start the start the server. The `dynamic_mcp_startup_shim` executable simply starts the server from it own directory which then allows it to find all the tools, resources and prompts correctly.
+
 ## Usage
 
 With the MCP server installed and your agent configured to use it, you can now drop `.md` or `.rb` files into `./mcp/resources` and `./mcp/prompts` and `.rb` files into `./mcp/tools` and they will automatically be exposed to the agent via the server. Just be sure to follow the below guides for each type of file.

@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.metadata["changelog_uri"] = "https://github.com/WriterZephos/dynamic_mcp"
 
   s.executables << "deploy_dynamic_mcp"
+  s.executables << "dynamic_mcp_startup_shim"
 
   s.add_dependency "fast-mcp"
   s.add_dependency "fileutils"

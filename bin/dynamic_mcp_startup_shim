@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require "fileutils"
+require "json"
+
+server_path = ARGV[0]
+
+if File.exist?(server_path)
+  directory = File.dirname(server_path)
+
+  Dir.chdir(directory) do
+    system "ruby #{server_path}"
+  end
+end
